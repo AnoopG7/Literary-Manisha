@@ -1,0 +1,42 @@
+import { SiteConfig, NavItem } from '@/types';
+
+export const siteConfig: SiteConfig = {
+  name: 'Manisha',
+  title: 'Manisha — Poet, Storyteller, Author',
+  description:
+    'Explore the literary world of Manisha — poetry, stories, and published books in Hindi and English. A journey through words that touch the soul.',
+  tagline: 'Poet. Storyteller. Author.',
+  url: 'https://manisha.vercel.app',
+  author: {
+    name: 'Manisha',
+    bio: 'A passionate writer weaving words in Hindi and English, exploring the depths of human emotions through poetry, stories, and prose.',
+    image: '/images/author.jpg',
+    email: 'contact@manisha.com',
+    social: {
+      instagram: '#',
+      twitter: '#',
+      facebook: '#',
+    },
+  },
+};
+
+export const navItems: NavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Works', href: '/works' },
+  { label: 'Books', href: '/books' },
+  { label: 'About', href: '/about' },
+];
+
+export const categories = [
+  { value: 'all', label: 'All' },
+  { value: 'poem', label: 'Poetry' },
+  { value: 'story', label: 'Stories' },
+  { value: 'essay', label: 'Essays' },
+] as const;
+
+export const languages = [
+  { value: 'all', label: 'All Languages' },
+  { value: 'english', label: 'English' },
+  { value: 'hindi', label: 'हिंदी' },
+  { value: 'bilingual', label: 'Bilingual' },
+] as const;
