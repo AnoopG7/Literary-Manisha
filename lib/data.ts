@@ -2,7 +2,6 @@ import dbConnect from '@/lib/db';
 import WorkModel from '@/lib/models/Work';
 import BookModel from '@/lib/models/Book';
 import AwardModel from '@/lib/models/Award';
-import { sampleWorks, sampleBooks, sampleAwards } from '@/lib/sample-data';
 import { Work, Book, Award } from '@/types';
 
 // Helper to convert Mongoose document to plain object
@@ -26,27 +25,8 @@ export async function getWorks(options?: {
   const db = await dbConnect();
 
   if (!db) {
-    // Fallback to sample data
-    let works = [...sampleWorks];
-    if (options?.category && options.category !== 'all') {
-      works = works.filter((w) => w.category === options.category);
-    }
-    if (options?.language && options.language !== 'all') {
-      works = works.filter((w) => w.language === options.language);
-    }
-    if (options?.tag) {
-      works = works.filter((w) => w.tags.includes(options.tag!));
-    }
-    if (options?.search) {
-      const q = options.search.toLowerCase();
-      works = works.filter(
-        (w) =>
-          w.title.toLowerCase().includes(q) ||
-          w.content.toLowerCase().includes(q) ||
-          w.tags.some((t) => t.toLowerCase().includes(q))
-      );
-    }
-    return works.filter((w) => w.status === 'published');
+    console.error('Database connection failed');
+    return [];
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,7 +58,8 @@ export async function getWorkBySlug(slug: string): Promise<Work | null> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleWorks.find((w) => w.slug === slug) || null;
+    console.error('Database connection failed');
+    return null;
   }
 
   const work = await WorkModel.findOne({ slug }).lean();
@@ -89,9 +70,8 @@ export async function getFeaturedWorks(limit = 3): Promise<Work[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleWorks
-      .filter((w) => w.tags.includes('featured') && w.status === 'published')
-      .slice(0, limit);
+    console.error('Database connection failed');
+    return [];
   }
 
   const works = await WorkModel.find({
@@ -109,9 +89,8 @@ export async function getAllWorkSlugs(): Promise<string[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleWorks
-      .filter((w) => w.status === 'published')
-      .map((w) => w.slug);
+    console.error('Database connection failed');
+    return [];
   }
 
   const works = await WorkModel.find({ status: 'published' })
@@ -127,7 +106,8 @@ export async function getBooks(): Promise<Book[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleBooks;
+    console.error('Database connection failed');
+    return [];
   }
 
   const books = await BookModel.find()
@@ -141,7 +121,8 @@ export async function getFeaturedBooks(limit = 3): Promise<Book[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleBooks.filter((b) => b.featured).slice(0, limit);
+    console.error('Database connection failed');
+    return [];
   }
 
   const books = await BookModel.find({ featured: true })
@@ -158,7 +139,8 @@ export async function getAwards(): Promise<Award[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleAwards;
+    console.error('Database connection failed');
+    return [];
   }
 
   const awards = await AwardModel.find()
@@ -174,7 +156,8 @@ export async function getAllWorks(): Promise<Work[]> {
   const db = await dbConnect();
 
   if (!db) {
-    return sampleWorks;
+    console.error('Database connection failed');
+    return [];
   }
 
   const works = await WorkModel.find()
@@ -194,11 +177,8 @@ export async function getStats(): Promise<{
   const db = await dbConnect();
 
   if (!db) {
-    return {
-      works: sampleWorks.filter((w) => w.status === 'published').length,
-      books: sampleBooks.length,
-      awards: sampleAwards.length,
-    };
+    console.error('Database connection failed');
+    return { works: 0, books: 0, awards: 0 };
   }
 
   const [works, books, awards] = await Promise.all([
