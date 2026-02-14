@@ -63,14 +63,14 @@ export function Footer() {
                   Instagram
                 </a>
               )}
-              {siteConfig.author.social.twitter && (
+              {siteConfig.author.social.youtube && (
                 <a
-                  href={siteConfig.author.social.twitter}
+                  href={siteConfig.author.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground transition-colors hover:text-primary w-fit"
                 >
-                  Twitter / X
+                  YouTube
                 </a>
               )}
               {siteConfig.author.social.linkedin && (

@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: WorkPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const work = await getWorkBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  const work = await getWorkBySlug(decodedSlug);
   if (!work) return {};
   return {
     title: work.title,
@@ -28,7 +29,8 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
 
 export default async function WorkPage({ params }: WorkPageProps) {
   const { slug } = await params;
-  const work = await getWorkBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  const work = await getWorkBySlug(decodedSlug);
 
   if (!work) {
     notFound();
@@ -122,11 +124,11 @@ export default async function WorkPage({ params }: WorkPageProps) {
           <div className="flex gap-2">
             <Button variant="outline" size="sm" className="rounded-full text-xs" asChild>
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(work.title)}&url=${encodeURIComponent(`https://manisha.vercel.app/works/${work.slug}`)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(work.title + ' — ' + `https://manisha.vercel.app/works/${work.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Twitter / X
+                WhatsApp
               </a>
             </Button>
             <Button variant="outline" size="sm" className="rounded-full text-xs" asChild>

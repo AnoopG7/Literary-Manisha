@@ -64,7 +64,7 @@ export interface SiteConfig {
     email: string;
     social: {
       instagram?: string;
-      twitter?: string;
+      youtube?: string;
       facebook?: string;
       linkedin?: string;
     };

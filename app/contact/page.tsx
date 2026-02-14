@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Mail, Instagram, Twitter, Facebook, Linkedin, Feather, Send } from 'lucide-react';
+import { Mail, Instagram, Youtube, Facebook, Linkedin, Feather, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { siteConfig } from '@/lib/config';
@@ -18,10 +18,10 @@ const socialLinks = [
     color: 'hover:text-pink-500',
   },
   {
-    label: 'Twitter / X',
-    href: siteConfig.author.social.twitter || '#',
-    icon: Twitter,
-    color: 'hover:text-blue-400',
+    label: 'YouTube',
+    href: siteConfig.author.social.youtube || '#',
+    icon: Youtube,
+    color: 'hover:text-red-500',
   },
   {
     label: 'Facebook',

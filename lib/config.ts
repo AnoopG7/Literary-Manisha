@@ -10,13 +10,13 @@ export const siteConfig: SiteConfig = {
   author: {
     name: 'Manisha',
     bio: 'A passionate writer weaving words in Hindi and English, exploring the depths of human emotions through poetry, stories, and prose.',
-    image: '/images/author.jpg',
-    email: 'contact@manisha.com',
+    image: '/author.jpeg',
+    email: 'manishachavda614@gmail.com',
     social: {
-      instagram: '#',
-      twitter: '#',
-      facebook: '#',
-      linkedin: '#',
+      instagram: 'https://www.instagram.com/_manisha__24?',
+      youtube: 'https://www.youtube.com/@Sabdasparsh',
+      facebook: 'https://www.facebook.com/share/171fKApe3N/',
+      linkedin: 'https://www.linkedin.com/in/manisha-chavda-55774535b/',
     },
   },
 };

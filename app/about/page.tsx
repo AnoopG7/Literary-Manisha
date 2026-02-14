@@ -1,4 +1,4 @@
-import { Mail, Instagram, Twitter, Award, BookOpen, PenTool, Download, Linkedin } from 'lucide-react';
+import { Mail, Instagram, Youtube, Award, BookOpen, PenTool, Download, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -25,10 +25,7 @@ export default async function AboutPage() {
               {/* Profile image placeholder */}
               <div className="relative mb-6">
                 <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 border border-border/50 flex items-center justify-center overflow-hidden">
-                  <div className="text-center p-8">
-                    <PenTool className="h-16 w-16 text-primary/30 mx-auto mb-4" />
-                    <p className="text-sm text-muted-foreground">Author Photo</p>
-                  </div>
+                  <img src="/author.jpeg" alt={siteConfig.author.name} className="w-full h-full object-cover" />
                 </div>
                 {/* Decorative dot */}
                 <div className="absolute -bottom-2 -right-2 h-6 w-6 rounded-full bg-primary/20 border-4 border-background" />
@@ -57,15 +54,15 @@ export default async function AboutPage() {
                     Instagram
                   </a>
                 )}
-                {siteConfig.author.social.twitter && (
+                {siteConfig.author.social.youtube && (
                   <a
-                    href={siteConfig.author.social.twitter}
+                    href={siteConfig.author.social.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <Twitter className="h-4 w-4" />
-                    Twitter / X
+                    <Youtube className="h-4 w-4" />
+                    YouTube
                   </a>
                 )}
                 {siteConfig.author.social.linkedin && (

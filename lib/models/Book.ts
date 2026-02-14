@@ -68,8 +68,8 @@ BookSchema.pre('validate', function () {
     const baseSlug = this.title
       .toLowerCase()
       .trim()
-      // Keep Unicode letters, numbers, spaces, and hyphens
-      .replace(/[^\p{L}\p{N}\s-]/gu, '')
+      // Keep Unicode letters, combining marks (for Devanagari matras), numbers, spaces, and hyphens
+      .replace(/[^\p{L}\p{M}\p{N}\s-]/gu, '')
       // Replace spaces with hyphens
       .replace(/\s+/g, '-')
       // Replace multiple hyphens with single hyphen
