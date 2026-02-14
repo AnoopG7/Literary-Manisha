@@ -16,6 +16,7 @@ export const siteConfig: SiteConfig = {
       instagram: '#',
       twitter: '#',
       facebook: '#',
+      linkedin: '#',
     },
   },
 };
@@ -25,6 +26,7 @@ export const navItems: NavItem[] = [
   { label: 'Works', href: '/works' },
   { label: 'Books', href: '/books' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const categories = [

@@ -1,22 +1,46 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { sampleWorks } from '@/lib/sample-data';
 import { categories, languages } from '@/lib/config';
-import type { WorkCategory, Language } from '@/types';
+import type { Work } from '@/types';
 
 export default function WorksPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeLanguage, setActiveLanguage] = useState<string>('all');
+  const [works, setWorks] = useState<Work[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const publishedWorks = sampleWorks.filter((w) => w.status === 'published');
+  // Fetch works from API
+  useEffect(() => {
+    const fetchWorks = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/works');
+        if (!response.ok) {
+          throw new Error('Failed to fetch works');
+        }
+        const data = await response.json();
+        setWorks(data);
+      } catch (err) {
+        console.error('Error fetching works:', err);
+        setError('Failed to load works. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWorks();
+  }, []);
+
+  const publishedWorks = works.filter((w) => w.status === 'published');
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -148,8 +172,19 @@ export default function WorksPage() {
           Showing {filteredWorks.length} of {publishedWorks.length} works
         </p>
 
-        {/* Works grid */}
-        {filteredWorks.length > 0 ? (
+        {/* Loading state */}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center">
+              <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">Loading works...</p>
+            </div>
+          </div>
+        ) : error ? (
+          <div className="py-20 text-center">
+            <p className="text-lg text-destructive">{error}</p>
+          </div>
+        ) : filteredWorks.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredWorks.map((work) => (
               <Link key={work._id} href={`/works/${work.slug}`}>

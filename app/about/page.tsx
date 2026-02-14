@@ -1,10 +1,10 @@
-import { Mail, Instagram, Twitter, Award, BookOpen, PenTool, Download } from 'lucide-react';
+import { Mail, Instagram, Twitter, Award, BookOpen, PenTool, Download, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/lib/config';
-import { sampleAwards } from '@/lib/sample-data';
+import { getAwards } from '@/lib/data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   description: `Learn about ${siteConfig.author.name} — poet, storyteller, and author. Explore achievements, awards, and the writing journey.`,
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const awards = await getAwards();
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -65,6 +66,17 @@ export default function AboutPage() {
                   >
                     <Twitter className="h-4 w-4" />
                     Twitter / X
+                  </a>
+                )}
+                {siteConfig.author.social.linkedin && (
+                  <a
+                    href={siteConfig.author.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
                   </a>
                 )}
               </div>
@@ -164,7 +176,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-bold tracking-tight">Awards & Recognition</h2>
               </div>
               <div className="space-y-6">
-                {sampleAwards.map((award) => (
+                {awards.map((award) => (
                   <Card key={award._id} className="border-border/50 bg-card/50">
                     <CardContent className="p-5">
                       <div className="flex items-start justify-between gap-4">

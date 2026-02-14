@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar, Tag, Globe, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { sampleWorks } from '@/lib/sample-data';
+import { getWorkBySlug, getWorks, getAllWorkSlugs } from '@/lib/data';
 import type { Metadata } from 'next';
 
 interface WorkPageProps {
@@ -12,12 +12,13 @@ interface WorkPageProps {
 }
 
 export async function generateStaticParams() {
-  return sampleWorks.map((work) => ({ slug: work.slug }));
+  const slugs = await getAllWorkSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: WorkPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const work = sampleWorks.find((w) => w.slug === slug);
+  const work = await getWorkBySlug(slug);
   if (!work) return {};
   return {
     title: work.title,
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
 
 export default async function WorkPage({ params }: WorkPageProps) {
   const { slug } = await params;
-  const work = sampleWorks.find((w) => w.slug === slug);
+  const work = await getWorkBySlug(slug);
 
   if (!work) {
     notFound();
@@ -36,14 +37,15 @@ export default async function WorkPage({ params }: WorkPageProps) {
   const isHindi = work.language === 'hindi';
 
   // Find prev/next works
-  const publishedWorks = sampleWorks.filter((w) => w.status === 'published');
+  const publishedWorks = await getWorks({ status: 'published' });
   const currentIndex = publishedWorks.findIndex((w) => w.slug === slug);
   const prevWork = currentIndex > 0 ? publishedWorks[currentIndex - 1] : null;
   const nextWork = currentIndex < publishedWorks.length - 1 ? publishedWorks[currentIndex + 1] : null;
 
   // Related works (same category, different slug)
-  const relatedWorks = sampleWorks
-    .filter((w) => w.category === work.category && w.slug !== slug && w.status === 'published')
+  const allCategoryWorks = await getWorks({ category: work.category, status: 'published' });
+  const relatedWorks = allCategoryWorks
+    .filter((w) => w.slug !== slug)
     .slice(0, 2);
 
   return (

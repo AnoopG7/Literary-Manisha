@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Feather, Mail, Heart } from 'lucide-react';
+import { Feather, Mail, Heart, Linkedin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig, navItems } from '@/lib/config';
 
@@ -71,6 +71,16 @@ export function Footer() {
                   className="text-sm text-muted-foreground transition-colors hover:text-primary w-fit"
                 >
                   Twitter / X
+                </a>
+              )}
+              {siteConfig.author.social.linkedin && (
+                <a
+                  href={siteConfig.author.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary w-fit"
+                >
+                  LinkedIn
                 </a>
               )}
             </div>

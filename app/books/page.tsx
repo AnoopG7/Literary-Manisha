@@ -2,7 +2,7 @@ import { ArrowRight, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { sampleBooks } from '@/lib/sample-data';
+import { getBooks } from '@/lib/data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   description: 'Browse published books — poetry collections, stories, and more. Available on Amazon.',
 };
 
-export default function BooksPage() {
+export default async function BooksPage() {
+  const books = await getBooks();
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -25,7 +26,7 @@ export default function BooksPage() {
 
         {/* Books grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {sampleBooks.map((book) => (
+          {books.map((book) => (
             <Card
               key={book._id}
               className="group overflow-hidden border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"

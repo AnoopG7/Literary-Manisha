@@ -5,9 +5,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/lib/config';
-import { sampleWorks, sampleBooks, sampleAwards } from '@/lib/sample-data';
+import { getFeaturedWorks, getFeaturedBooks, getAwards, getStats } from '@/lib/data';
 
-function HeroSection() {
+async function HeroSection() {
+  const stats = await getStats();
   return (
     <section className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
       {/* Decorative background elements */}
@@ -63,15 +64,15 @@ function HeroSection() {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-3 gap-8 sm:gap-16 animate-fade-in-up stagger-4">
             <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{sampleWorks.length}+</p>
+              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.works}+</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Works Published</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{sampleBooks.length}</p>
+              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.books}</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Books</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{sampleAwards.length}</p>
+              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.awards}</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Awards</p>
             </div>
           </div>
@@ -81,10 +82,8 @@ function HeroSection() {
   );
 }
 
-function FeaturedWorksSection() {
-  const featuredWorks = sampleWorks.filter((w) =>
-    w.tags.includes('featured')
-  ).slice(0, 3);
+async function FeaturedWorksSection() {
+  const featuredWorks = await getFeaturedWorks(3);
 
   return (
     <section className="py-20 bg-card/30">
@@ -161,8 +160,8 @@ function FeaturedWorksSection() {
   );
 }
 
-function BooksShowcaseSection() {
-  const featuredBooks = sampleBooks.filter((b) => b.featured);
+async function BooksShowcaseSection() {
+  const featuredBooks = await getFeaturedBooks(3);
 
   return (
     <section className="py-20">
@@ -235,7 +234,9 @@ function BooksShowcaseSection() {
   );
 }
 
-function AwardsSection() {
+async function AwardsSection() {
+  const awards = await getAwards();
+
   return (
     <section className="py-20 bg-card/30">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -251,10 +252,10 @@ function AwardsSection() {
 
         {/* Awards timeline */}
         <div className="max-w-2xl mx-auto space-y-0">
-          {sampleAwards.map((award, i) => (
+          {awards.map((award, i) => (
             <div key={award._id} className="relative flex gap-6 pb-8 last:pb-0">
               {/* Timeline line */}
-              {i < sampleAwards.length - 1 && (
+              {i < awards.length - 1 && (
                 <div className="absolute left-[19px] top-10 h-full w-px bg-border" />
               )}
 
@@ -316,7 +317,7 @@ function CTASection() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <>
       <HeroSection />

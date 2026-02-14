@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Noto_Sans_Devanagari, Lora } from 'next/font/google';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import { Navbar } from '@/components/layout/navbar';
-import { Footer } from '@/components/layout/footer';
+import { ConditionalLayout } from '@/components/layout/conditional-layout';
 import { siteConfig } from '@/lib/config';
 import './globals.css';
 
@@ -69,11 +68,7 @@ export default function RootLayout({
         className={`${inter.variable} ${notoSansDevanagari.variable} ${lora.variable} font-sans antialiased`}
       >
         <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>
