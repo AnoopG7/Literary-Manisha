@@ -7,6 +7,8 @@ import { Separator } from '@/components/ui/separator';
 import { getWorkBySlug, getWorks, getAllWorkSlugs } from '@/lib/data';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 interface WorkPageProps {
   params: Promise<{ slug: string }>;
 }

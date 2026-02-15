@@ -5,6 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { getBooks } from '@/lib/data';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Books',
   description: 'Browse published books — poetry collections, stories, and more. Available on Amazon.',

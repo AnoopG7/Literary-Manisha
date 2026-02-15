@@ -288,6 +288,28 @@ export default function NewWorkPage() {
                 />
               </CardContent>
             </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-sm">Featured</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.tags.includes('featured')}
+                    onChange={(e) => {
+                      const newTags = e.target.checked
+                        ? [...formData.tags.filter(t => t !== 'featured'), 'featured']
+                        : formData.tags.filter(t => t !== 'featured');
+                      setFormData({ ...formData, tags: newTags });
+                    }}
+                    className="h-4 w-4 rounded border-input"
+                  />
+                  <span className="text-sm">Show on homepage</span>
+                </label>
+              </CardContent>
+            </Card>
           </div>
         </div>
       )}
