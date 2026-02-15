@@ -14,6 +14,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
+import { ImageUpload } from '@/components/admin/image-upload';
 import { Award } from '@/types';
 
 const emptyAward = {
@@ -21,6 +22,7 @@ const emptyAward = {
   issuingBody: '',
   year: new Date().getFullYear(),
   description: '',
+  image: '',
 };
 
 export default function AdminAwardsPage() {
@@ -64,6 +66,7 @@ export default function AdminAwardsPage() {
       issuingBody: award.issuingBody,
       year: award.year,
       description: award.description,
+      image: award.image || '',
     });
     setShowForm(true);
   };
@@ -152,20 +155,28 @@ export default function AdminAwardsPage() {
               {awards.map((award) => (
                 <div
                   key={award._id}
-                  className="flex items-center justify-between py-4"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-4"
                 >
-                  <div className="flex items-start gap-3 flex-1 min-w-0 pr-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
-                      <Trophy className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium">{award.title}</h3>
-                      <p className="text-sm text-muted-foreground">
+                  <div className="flex items-start gap-3 flex-1 min-w-0">
+                    {award.image ? (
+                      <img
+                        src={award.image}
+                        alt={award.title}
+                        className="h-10 w-10 rounded-full object-cover border border-border flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
+                        <Trophy className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium truncate">{award.title}</h3>
+                      <p className="text-sm text-muted-foreground truncate">
                         {award.issuingBody} · {award.year}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 self-end sm:self-center">
                     <Button
                       variant="ghost"
                       size="icon"
@@ -191,7 +202,7 @@ export default function AdminAwardsPage() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingAward ? 'Edit Award' : 'Add New Award'}
@@ -244,6 +255,14 @@ export default function AdminAwardsPage() {
                 className="min-h-[80px]"
               />
             </div>
+            <ImageUpload
+              value={formData.image}
+              onChange={(url) =>
+                setFormData({ ...formData, image: url })
+              }
+              label="Award Image (optional)"
+              placeholder="Upload award certificate or badge"
+            />
           </div>
           <DialogFooter>
             <Button

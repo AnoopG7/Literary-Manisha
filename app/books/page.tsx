@@ -31,15 +31,23 @@ export default async function BooksPage() {
               key={book._id}
               className="group overflow-hidden border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
             >
-              {/* Book cover placeholder */}
+              {/* Book cover */}
               <div className="aspect-[3/4] bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                <div className="text-center p-8">
-                  <BookOpen className="h-16 w-16 text-primary/30 mx-auto mb-4" />
-                  <p className={`text-xl font-semibold text-primary/60 ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
-                    {book.title}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-2">{book.publicationYear}</p>
-                </div>
+                {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
+                  <img
+                    src={book.coverImage}
+                    alt={book.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-center p-8">
+                    <BookOpen className="h-16 w-16 text-primary/30 mx-auto mb-4" />
+                    <p className={`text-xl font-semibold text-primary/60 ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
+                      {book.title}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">{book.publicationYear}</p>
+                  </div>
+                )}
                 {/* Shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </div>

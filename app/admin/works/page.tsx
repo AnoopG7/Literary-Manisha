@@ -121,45 +121,33 @@ export default function AdminWorksPage() {
               {filteredWorks.map((work) => (
                 <div
                   key={work._id}
-                  className="flex items-center justify-between py-4 first:pt-0 last:pb-0"
+                  className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <div className="flex-1 min-w-0 pr-4">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-medium truncate">{work.title}</h3>
-                    </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium truncate">{work.title}</h3>
                     <div className="mt-1 flex flex-wrap items-center gap-2">
                       <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${getCategoryColor(work.category)}`}>
                         {work.category}
                       </span>
-                      <Badge
-                        variant={work.status === 'published' ? 'default' : 'secondary'}
-                        className="text-xs"
-                      >
-                        {work.status}
-                      </Badge>
                       <span className="text-xs text-muted-foreground">
-                        {work.language === 'hindi' ? 'हिंदी' : work.language}
+                        {new Date(work.createdAt).getFullYear()}
                       </span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(work.createdAt).toLocaleDateString('en-IN', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                        })}
-                      </span>
+                      {work.tags?.includes('featured') && (
+                        <Badge className="text-xs">Featured</Badge>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 flex-shrink-0">
                     <Link href={`/admin/works/${work._id}/edit`}>
-                      <Button variant="ghost" size="icon">
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
                         <Pencil className="h-4 w-4" />
                       </Button>
                     </Link>
                     <Button
                       variant="ghost"
                       size="icon"
+                      className="h-8 w-8 text-destructive hover:text-destructive"
                       onClick={() => setDeleteTarget(work)}
-                      className="text-destructive hover:text-destructive"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>

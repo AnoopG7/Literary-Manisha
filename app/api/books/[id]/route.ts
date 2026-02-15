@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { del } from '@vercel/blob';
 import dbConnect from '@/lib/db';
 import Book from '@/lib/models/Book';
 import { auth } from '@/lib/auth';
@@ -64,11 +65,26 @@ export async function DELETE(
     }
 
     const { id } = await params;
-    const book = await Book.findByIdAndDelete(id);
+    
+    // Find the book first to get the coverImage URL
+    const book = await Book.findById(id);
 
     if (!book) {
       return NextResponse.json({ error: 'Book not found' }, { status: 404 });
     }
+
+    // Delete blob image if it exists and is a Vercel Blob URL
+    if (book.coverImage && book.coverImage.includes('blob.vercel-storage.com')) {
+      try {
+        await del(book.coverImage);
+      } catch (blobError) {
+        console.error('Failed to delete blob:', blobError);
+        // Continue with deletion even if blob deletion fails
+      }
+    }
+
+    // Delete the book from database
+    await Book.findByIdAndDelete(id);
 
     return NextResponse.json({ message: 'Book deleted successfully' });
   } catch (error) {

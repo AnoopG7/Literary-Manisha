@@ -63,18 +63,18 @@ async function HeroSection() {
 
           {/* Stats */}
           <div className="mt-16 grid grid-cols-3 gap-8 sm:gap-16 animate-fade-in-up stagger-4">
-            <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.works}+</p>
-              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Works Published</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.books}</p>
-              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Books</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{stats.awards}</p>
-              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider">Awards</p>
-            </div>
+            <Link href="/works" className="text-center group">
+              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.works}+</p>
+              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Works Published</p>
+            </Link>
+            <Link href="/books" className="text-center group">
+              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.books}</p>
+              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Books</p>
+            </Link>
+            <Link href="/awards" className="text-center group">
+              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.awards}</p>
+              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Awards</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ async function HeroSection() {
 }
 
 async function FeaturedWorksSection() {
-  const featuredWorks = await getFeaturedWorks(3);
+  const featuredWorks = await getFeaturedWorks();
 
   return (
     <section className="py-20 bg-card/30">
@@ -161,7 +161,7 @@ async function FeaturedWorksSection() {
 }
 
 async function BooksShowcaseSection() {
-  const featuredBooks = await getFeaturedBooks(3);
+  const featuredBooks = await getFeaturedBooks();
 
   return (
     <section className="py-20">
@@ -186,15 +186,23 @@ async function BooksShowcaseSection() {
               key={book._id}
               className="group overflow-hidden border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
-              {/* Book cover placeholder */}
+              {/* Book cover */}
               <div className="aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden">
-                <div className="text-center p-6">
-                  <BookOpen className="h-12 w-12 text-primary/40 mx-auto mb-3" />
-                  <p className={`text-lg font-semibold text-primary/70 ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
-                    {book.title}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">{book.publicationYear}</p>
-                </div>
+                {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
+                  <img
+                    src={book.coverImage}
+                    alt={book.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-center p-6">
+                    <BookOpen className="h-12 w-12 text-primary/40 mx-auto mb-3" />
+                    <p className={`text-lg font-semibold text-primary/70 ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
+                      {book.title}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-1">{book.publicationYear}</p>
+                  </div>
+                )}
                 {/* Shine effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </div>
@@ -259,10 +267,18 @@ async function AwardsSection() {
                 <div className="absolute left-[19px] top-10 h-full w-px bg-border" />
               )}
 
-              {/* Icon */}
-              <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
-                <Award className="h-5 w-5 text-primary" />
-              </div>
+              {/* Icon / Image */}
+              {award.image ? (
+                <img
+                  src={award.image}
+                  alt={award.title}
+                  className="flex-shrink-0 h-10 w-10 rounded-full object-cover border border-primary/20"
+                />
+              ) : (
+                <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
+                  <Award className="h-5 w-5 text-primary" />
+                </div>
+              )}
 
               {/* Content */}
               <div className="flex-1 pb-2">

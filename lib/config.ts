@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
   author: {
     name: 'Manisha',
     bio: 'A passionate writer weaving words in Hindi and English, exploring the depths of human emotions through poetry, stories, and prose.',
-    image: '/author.jpeg',
+    image: 'https://pdvr1jvuireizurd.public.blob.vercel-storage.com/uploads/author_image',
     email: 'manishachavda614@gmail.com',
     social: {
       instagram: 'https://www.instagram.com/_manisha__24?',
@@ -25,6 +25,7 @@ export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Works', href: '/works' },
   { label: 'Books', href: '/books' },
+  { label: 'Awards', href: '/awards' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];

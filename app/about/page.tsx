@@ -25,7 +25,7 @@ export default async function AboutPage() {
               {/* Profile image placeholder */}
               <div className="relative mb-6">
                 <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 border border-border/50 flex items-center justify-center overflow-hidden">
-                  <img src="/author.jpeg" alt={siteConfig.author.name} className="w-full h-full object-cover" />
+                  <img src={siteConfig.author.image} alt={siteConfig.author.name} className="w-full h-full object-cover" />
                 </div>
                 {/* Decorative dot */}
                 <div className="absolute -bottom-2 -right-2 h-6 w-6 rounded-full bg-primary/20 border-4 border-background" />
@@ -177,12 +177,21 @@ export default async function AboutPage() {
                   <Card key={award._id} className="border-border/50 bg-card/50">
                     <CardContent className="p-5">
                       <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <h3 className="font-semibold text-base">{award.title}</h3>
-                          <p className="text-sm text-primary/80 mt-0.5">{award.issuingBody}</p>
-                          <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                            {award.description}
-                          </p>
+                        <div className="flex items-start gap-4">
+                          {award.image && (
+                            <img
+                              src={award.image}
+                              alt={award.title}
+                              className="h-14 w-14 rounded-lg object-cover border border-border flex-shrink-0 mt-0.5"
+                            />
+                          )}
+                          <div>
+                            <h3 className="font-semibold text-base">{award.title}</h3>
+                            <p className="text-sm text-primary/80 mt-0.5">{award.issuingBody}</p>
+                            <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                              {award.description}
+                            </p>
+                          </div>
                         </div>
                         <Badge variant="outline" className="text-xs flex-shrink-0">
                           {award.year}

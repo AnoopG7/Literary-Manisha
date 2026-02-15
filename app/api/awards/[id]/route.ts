@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { del } from '@vercel/blob';
 import dbConnect from '@/lib/db';
 import Award from '@/lib/models/Award';
 import { auth } from '@/lib/auth';
@@ -64,11 +65,26 @@ export async function DELETE(
     }
 
     const { id } = await params;
-    const award = await Award.findByIdAndDelete(id);
+    
+    // Find the award first to get the image URL
+    const award = await Award.findById(id);
 
     if (!award) {
       return NextResponse.json({ error: 'Award not found' }, { status: 404 });
     }
+
+    // Delete blob image if it exists and is a Vercel Blob URL
+    if (award.image && award.image.includes('blob.vercel-storage.com')) {
+      try {
+        await del(award.image);
+      } catch (blobError) {
+        console.error('Failed to delete blob:', blobError);
+        // Continue with deletion even if blob deletion fails
+      }
+    }
+
+    // Delete the award from database
+    await Award.findByIdAndDelete(id);
 
     return NextResponse.json({ message: 'Award deleted successfully' });
   } catch (error) {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react';
+import { Plus, Pencil, Trash2, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,6 +15,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
+import { ImageUpload } from '@/components/admin/image-upload';
 import { Book, Language } from '@/types';
 
 interface BookFormData {
@@ -178,23 +179,36 @@ export default function AdminBooksPage() {
               {books.map((book) => (
                 <div
                   key={book._id}
-                  className="flex items-center justify-between py-4"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-4"
                 >
-                  <div className="flex-1 min-w-0 pr-4">
-                    <h3 className="font-medium">{book.title}</h3>
-                    <div className="mt-1 flex items-center gap-2">
-                      <Badge variant="outline" className="text-xs">
-                        {book.genre}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">
-                        {book.publicationYear}
-                      </span>
-                      {book.featured && (
-                        <Badge className="text-xs">Featured</Badge>
-                      )}
+                  <div className="flex items-start gap-3 flex-1 min-w-0">
+                    {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
+                      <img
+                        src={book.coverImage}
+                        alt={book.title}
+                        className="h-12 w-9 rounded object-cover border border-border flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="h-12 w-9 rounded bg-muted flex items-center justify-center flex-shrink-0 border border-border">
+                        <BookOpen className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium truncate">{book.title}</h3>
+                      <div className="mt-1 flex items-center gap-2 flex-wrap">
+                        <Badge variant="outline" className="text-xs">
+                          {book.genre}
+                        </Badge>
+                        <span className="text-xs text-muted-foreground">
+                          {book.publicationYear}
+                        </span>
+                        {book.featured && (
+                          <Badge className="text-xs">Featured</Badge>
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 self-end sm:self-center">
                     <a
                       href={book.amazonLink}
                       target="_blank"
@@ -292,16 +306,14 @@ export default function AdminBooksPage() {
                 placeholder="https://www.amazon.in/..."
               />
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Cover Image URL</label>
-              <Input
-                value={formData.coverImage}
-                onChange={(e) =>
-                  setFormData({ ...formData, coverImage: e.target.value })
-                }
-                placeholder="/images/book-cover.jpg"
-              />
-            </div>
+            <ImageUpload
+              value={formData.coverImage === '/images/book-placeholder.jpg' ? '' : formData.coverImage}
+              onChange={(url) =>
+                setFormData({ ...formData, coverImage: url || '/images/book-placeholder.jpg' })
+              }
+              label="Cover Image"
+              placeholder="Upload book cover image"
+            />
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Language</label>

@@ -66,7 +66,7 @@ export async function getWorkBySlug(slug: string): Promise<Work | null> {
   return work ? toPlainObject<Work>(work) : null;
 }
 
-export async function getFeaturedWorks(limit = 3): Promise<Work[]> {
+export async function getFeaturedWorks(limit = 0): Promise<Work[]> {
   const db = await dbConnect();
 
   if (!db) {
@@ -117,7 +117,7 @@ export async function getBooks(): Promise<Book[]> {
   return books.map((b) => toPlainObject<Book>(b));
 }
 
-export async function getFeaturedBooks(limit = 3): Promise<Book[]> {
+export async function getFeaturedBooks(limit = 0): Promise<Book[]> {
   const db = await dbConnect();
 
   if (!db) {
