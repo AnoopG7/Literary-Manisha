@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { del } from '@vercel/blob';
 import dbConnect from '@/lib/db';
 import Award from '@/lib/models/Award';
@@ -34,6 +35,10 @@ export async function PUT(
     if (!award) {
       return NextResponse.json({ error: 'Award not found' }, { status: 404 });
     }
+
+    // Revalidate pages that show awards
+    revalidatePath('/about');
+    revalidatePath('/');
 
     return NextResponse.json(award);
   } catch (error) {
@@ -85,6 +90,10 @@ export async function DELETE(
 
     // Delete the award from database
     await Award.findByIdAndDelete(id);
+
+    // Revalidate pages that show awards
+    revalidatePath('/about');
+    revalidatePath('/');
 
     return NextResponse.json({ message: 'Award deleted successfully' });
   } catch (error) {

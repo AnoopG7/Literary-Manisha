@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Work from '@/lib/models/Work';
 import { auth } from '@/lib/auth';
@@ -33,6 +34,11 @@ export async function PUT(
     if (!work) {
       return NextResponse.json({ error: 'Work not found' }, { status: 404 });
     }
+
+    // Revalidate pages that show works
+    revalidatePath('/works');
+    revalidatePath(`/works/${work.slug}`);
+    revalidatePath('/');
 
     return NextResponse.json(work);
   } catch (error) {
@@ -69,6 +75,11 @@ export async function DELETE(
     if (!work) {
       return NextResponse.json({ error: 'Work not found' }, { status: 404 });
     }
+
+    // Revalidate pages that show works
+    revalidatePath('/works');
+    revalidatePath(`/works/${work.slug}`);
+    revalidatePath('/');
 
     return NextResponse.json({ message: 'Work deleted successfully' });
   } catch (error) {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Book from '@/lib/models/Book';
 import { auth } from '@/lib/auth';
@@ -43,6 +44,10 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const book = await Book.create(body);
+
+    // Revalidate pages that show books
+    revalidatePath('/books');
+    revalidatePath('/');
 
     return NextResponse.json(book, { status: 201 });
   } catch (error) {

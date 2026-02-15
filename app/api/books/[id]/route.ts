@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { del } from '@vercel/blob';
 import dbConnect from '@/lib/db';
 import Book from '@/lib/models/Book';
@@ -34,6 +35,10 @@ export async function PUT(
     if (!book) {
       return NextResponse.json({ error: 'Book not found' }, { status: 404 });
     }
+
+    // Revalidate pages that show books
+    revalidatePath('/books');
+    revalidatePath('/');
 
     return NextResponse.json(book);
   } catch (error) {
@@ -85,6 +90,10 @@ export async function DELETE(
 
     // Delete the book from database
     await Book.findByIdAndDelete(id);
+
+    // Revalidate pages that show books
+    revalidatePath('/books');
+    revalidatePath('/');
 
     return NextResponse.json({ message: 'Book deleted successfully' });
   } catch (error) {

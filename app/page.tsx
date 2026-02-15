@@ -7,8 +7,6 @@ import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/lib/config';
 import { getFeaturedWorks, getFeaturedBooks, getAwards, getStats } from '@/lib/data';
 
-export const dynamic = 'force-dynamic';
-
 async function HeroSection() {
   const stats = await getStats();
   return (

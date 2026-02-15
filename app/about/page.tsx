@@ -7,8 +7,6 @@ import { siteConfig } from '@/lib/config';
 import { getAwards } from '@/lib/data';
 import type { Metadata } from 'next';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'About',
   description: `Learn about ${siteConfig.author.name} — poet, storyteller, and author. Explore achievements, awards, and the writing journey.`,

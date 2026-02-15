@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Work from '@/lib/models/Work';
 import { auth } from '@/lib/auth';
@@ -60,6 +61,10 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const work = await Work.create(body);
+
+    // Revalidate pages that show works
+    revalidatePath('/works');
+    revalidatePath('/');
 
     return NextResponse.json(work, { status: 201 });
   } catch (error) {

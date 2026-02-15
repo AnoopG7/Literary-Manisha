@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Award from '@/lib/models/Award';
 import { auth } from '@/lib/auth';
@@ -43,6 +44,10 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const award = await Award.create(body);
+
+    // Revalidate pages that show awards
+    revalidatePath('/about');
+    revalidatePath('/');
 
     return NextResponse.json(award, { status: 201 });
   } catch (error) {
