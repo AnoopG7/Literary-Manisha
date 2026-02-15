@@ -46,6 +46,7 @@ export async function POST(request: Request) {
     const award = await Award.create(body);
 
     // Revalidate pages that show awards
+    revalidatePath('/awards');
     revalidatePath('/about');
     revalidatePath('/');
 

@@ -37,6 +37,7 @@ export async function PUT(
     }
 
     // Revalidate pages that show awards
+    revalidatePath('/awards');
     revalidatePath('/about');
     revalidatePath('/');
 
@@ -92,6 +93,7 @@ export async function DELETE(
     await Award.findByIdAndDelete(id);
 
     // Revalidate pages that show awards
+    revalidatePath('/awards');
     revalidatePath('/about');
     revalidatePath('/');
 
