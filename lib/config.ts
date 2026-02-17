@@ -1,10 +1,10 @@
 import { SiteConfig, NavItem } from '@/types';
 
 export const siteConfig: SiteConfig = {
-  name: 'Manisha',
+  name: 'Sabda Sparsh',
   title: 'Manisha — Poet, Storyteller, Author',
   description:
-    'Explore the literary world of Manisha — poetry, stories, and published books in Hindi and English. A journey through words that touch the soul.',
+    'Explore the literary world of Manisha — poetry, stories, and published books in Hindi and English on Sabda Sparsh. A journey through words that touch the soul.',
   tagline: 'Poet. Storyteller. Author.',
   url: 'https://sabdasparsh.vercel.app',
   author: {

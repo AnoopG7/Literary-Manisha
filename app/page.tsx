@@ -28,7 +28,7 @@ async function HeroSection() {
 
           {/* Name */}
           <h1 className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl animate-fade-in-up">
-            <span className="text-gradient">{siteConfig.author.name}</span>
+            <span className="text-gradient">Sabda Sparsh</span>
           </h1>
 
           {/* Tagline */}
