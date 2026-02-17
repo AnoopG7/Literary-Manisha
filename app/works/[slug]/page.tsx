@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, Tag, Globe, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { ShareButtons } from '@/components/share-buttons';
 import { getWorkBySlug, getWorks, getAllWorkSlugs } from '@/lib/data';
 import type { Metadata } from 'next';
 
@@ -121,26 +122,10 @@ export default async function WorkPage({ params }: WorkPageProps) {
             <Share2 className="h-4 w-4" />
             <span>Share this {work.category}</span>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="rounded-full text-xs" asChild>
-              <a
-                href={`https://wa.me/?text=${encodeURIComponent(work.title + ' — ' + `https://manisha.vercel.app/works/${work.slug}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" className="rounded-full text-xs" asChild>
-              <a
-                href={`https://wa.me/?text=${encodeURIComponent(`${work.title} - https://manisha.vercel.app/works/${work.slug}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
-            </Button>
-          </div>
+          <ShareButtons 
+            url={`https://sabdasparsh.vercel.app/works/${work.slug}`}
+            title={work.title}
+          />
         </div>
 
         {/* Prev / Next navigation */}

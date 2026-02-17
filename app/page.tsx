@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Award, Feather, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -108,7 +109,7 @@ async function FeaturedWorksSection() {
 
         {/* Works grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredWorks.map((work, i) => (
+          {featuredWorks.map((work) => (
             <Link key={work._id} href={`/works/${work.slug}`}>
               <Card className="group h-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 border-border/50 bg-card hover:border-primary/20">
                 <CardContent className="p-6">
@@ -189,10 +190,12 @@ async function BooksShowcaseSection() {
               {/* Book cover */}
               <div className="aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden">
                 {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
-                  <img
+                  <Image
                     src={book.coverImage}
                     alt={book.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 ) : (
                   <div className="text-center p-6">
@@ -269,11 +272,15 @@ async function AwardsSection() {
 
               {/* Icon / Image */}
               {award.image ? (
-                <img
-                  src={award.image}
-                  alt={award.title}
-                  className="flex-shrink-0 h-10 w-10 rounded-full object-cover border border-primary/20"
-                />
+                <div className="relative h-10 w-10 rounded-full border border-primary/20 flex-shrink-0 overflow-hidden">
+                  <Image
+                    src={award.image}
+                    alt={award.title}
+                    fill
+                    className="object-cover"
+                    sizes="40px"
+                  />
+                </div>
               ) : (
                 <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
                   <Award className="h-5 w-5 text-primary" />

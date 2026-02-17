@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { toast } from 'sonner';
 import { Plus, Pencil, Trash2, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -92,35 +94,39 @@ export default function AdminBooksPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const slug = formData.title
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .trim();
-
+      // Don't generate slug on client - let the Book model handle it with proper Unicode support
       if (editingBook) {
         const res = await fetch(`/api/books/${editingBook._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...formData, slug }),
+          body: JSON.stringify(formData),
         });
         if (res.ok) {
           await fetchBooks();
           setShowForm(false);
+          toast.success('Book updated successfully!');
+        } else {
+          const error = await res.json();
+          toast.error(error.error || 'Failed to update book');
         }
       } else {
         const res = await fetch('/api/books', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...formData, slug }),
+          body: JSON.stringify(formData),
         });
         if (res.ok) {
           await fetchBooks();
           setShowForm(false);
+          toast.success('Book created successfully!');
+        } else {
+          const error = await res.json();
+          toast.error(error.error || 'Failed to create book');
         }
       }
     } catch (error) {
       console.error('Failed to save book:', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -136,9 +142,14 @@ export default function AdminBooksPage() {
       if (res.ok) {
         setBooks(books.filter((b) => b._id !== deleteTarget._id));
         setDeleteTarget(null);
+        toast.success('Book deleted successfully!');
+      } else {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to delete book');
       }
     } catch (error) {
       console.error('Failed to delete book:', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsDeleting(false);
     }
@@ -183,11 +194,15 @@ export default function AdminBooksPage() {
                 >
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
-                      <img
-                        src={book.coverImage}
-                        alt={book.title}
-                        className="h-12 w-9 rounded object-cover border border-border flex-shrink-0"
-                      />
+                      <div className="relative h-12 w-9 rounded border border-border flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={book.coverImage}
+                          alt={book.title}
+                          fill
+                          className="object-cover"
+                          sizes="36px"
+                        />
+                      </div>
                     ) : (
                       <div className="h-12 w-9 rounded bg-muted flex items-center justify-center flex-shrink-0 border border-border">
                         <BookOpen className="h-4 w-4 text-muted-foreground" />

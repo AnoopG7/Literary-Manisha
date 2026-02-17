@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -66,14 +67,19 @@ export default function NewWorkPage() {
       });
 
       if (res.ok) {
+        toast.success(`Work ${status === 'published' ? 'published' : 'saved as draft'} successfully!`);
         router.push('/admin/works');
         router.refresh();
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to create work');
+        const errorMsg = data.error || 'Failed to create work';
+        setError(errorMsg);
+        toast.error(errorMsg);
       }
     } catch {
-      setError('An unexpected error occurred');
+      const errorMsg = 'An unexpected error occurred';
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setIsSubmitting(false);
     }

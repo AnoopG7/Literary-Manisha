@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -34,10 +35,12 @@ export default async function BooksPage() {
               {/* Book cover */}
               <div className="aspect-[3/4] bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
                 {book.coverImage && book.coverImage !== '/images/book-placeholder.jpg' ? (
-                  <img
+                  <Image
                     src={book.coverImage}
                     alt={book.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 ) : (
                   <div className="text-center p-8">

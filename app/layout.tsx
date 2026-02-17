@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Noto_Sans_Devanagari, Lora } from 'next/font/google';
+import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ConditionalLayout } from '@/components/layout/conditional-layout';
 import { siteConfig } from '@/lib/config';
@@ -69,6 +70,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ConditionalLayout>{children}</ConditionalLayout>
+          <Toaster richColors position="top-center" />
         </ThemeProvider>
       </body>
     </html>

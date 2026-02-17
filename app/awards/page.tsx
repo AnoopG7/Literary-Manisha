@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Award, Trophy, Calendar } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -50,11 +51,15 @@ export default async function AwardsPage() {
                 <div className="aspect-[4/3] bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-yellow-950/30 flex items-center justify-center relative overflow-hidden">
                   {award.image ? (
                     <ImageLightbox src={award.image} alt={award.title}>
-                      <img
-                        src={award.image}
-                        alt={award.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={award.image}
+                          alt={award.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
                     </ImageLightbox>
                   ) : (
                     <div className="text-center p-8">

@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import { MetadataRoute } from 'next';
 import { getAllWorkSlugs } from '@/lib/data';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://manisha.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sabdasparsh.vercel.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllWorkSlugs();

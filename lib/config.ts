@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   description:
     'Explore the literary world of Manisha — poetry, stories, and published books in Hindi and English. A journey through words that touch the soul.',
   tagline: 'Poet. Storyteller. Author.',
-  url: 'https://manisha.vercel.app',
+  url: 'https://sabdasparsh.vercel.app',
   author: {
     name: 'Manisha',
     bio: 'A passionate writer weaving words in Hindi and English, exploring the depths of human emotions through poetry, stories, and prose.',

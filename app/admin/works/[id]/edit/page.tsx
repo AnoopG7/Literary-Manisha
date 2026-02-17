@@ -2,6 +2,7 @@
 
 import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -108,14 +109,19 @@ export default function EditWorkPage({
       });
 
       if (res.ok) {
+        toast.success('Work updated successfully!');
         router.push('/admin/works');
         router.refresh();
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to update work');
+        const errorMsg = data.error || 'Failed to update work';
+        setError(errorMsg);
+        toast.error(errorMsg);
       }
     } catch {
-      setError('An unexpected error occurred');
+      const errorMsg = 'An unexpected error occurred';
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setIsSubmitting(false);
     }

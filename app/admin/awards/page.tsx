@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { toast } from 'sonner';
 import { Plus, Pencil, Trash2, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -83,6 +85,10 @@ export default function AdminAwardsPage() {
         if (res.ok) {
           await fetchAwards();
           setShowForm(false);
+          toast.success('Award updated successfully!');
+        } else {
+          const error = await res.json();
+          toast.error(error.error || 'Failed to update award');
         }
       } else {
         const res = await fetch('/api/awards', {
@@ -93,10 +99,15 @@ export default function AdminAwardsPage() {
         if (res.ok) {
           await fetchAwards();
           setShowForm(false);
+          toast.success('Award created successfully!');
+        } else {
+          const error = await res.json();
+          toast.error(error.error || 'Failed to create award');
         }
       }
     } catch (error) {
       console.error('Failed to save award:', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -112,9 +123,14 @@ export default function AdminAwardsPage() {
       if (res.ok) {
         setAwards(awards.filter((a) => a._id !== deleteTarget._id));
         setDeleteTarget(null);
+        toast.success('Award deleted successfully!');
+      } else {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to delete award');
       }
     } catch (error) {
       console.error('Failed to delete award:', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsDeleting(false);
     }
@@ -159,11 +175,15 @@ export default function AdminAwardsPage() {
                 >
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     {award.image ? (
-                      <img
-                        src={award.image}
-                        alt={award.title}
-                        className="h-10 w-10 rounded-full object-cover border border-border flex-shrink-0"
-                      />
+                      <div className="relative h-10 w-10 rounded-full border border-border flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={award.image}
+                          alt={award.title}
+                          fill
+                          className="object-cover"
+                          sizes="40px"
+                        />
+                      </div>
                     ) : (
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
                         <Trophy className="h-5 w-5 text-amber-600 dark:text-amber-400" />

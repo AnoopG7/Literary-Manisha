@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import { Plus, Pencil, Trash2, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,9 +47,14 @@ export default function AdminWorksPage() {
       if (res.ok) {
         setWorks(works.filter((w) => w._id !== deleteTarget._id));
         setDeleteTarget(null);
+        toast.success('Work deleted successfully!');
+      } else {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to delete work');
       }
     } catch (error) {
       console.error('Failed to delete work:', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsDeleting(false);
     }
