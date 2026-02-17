@@ -223,30 +223,35 @@ export default function AdminBooksPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 self-end sm:self-center">
+                  <div className="grid grid-cols-3 gap-2 sm:flex sm:items-center sm:gap-1 sm:self-center">
                     <a
                       href={book.amazonLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="w-full sm:w-auto"
                     >
-                      <Button variant="ghost" size="icon">
-                        <ExternalLink className="h-4 w-4" />
+                      <Button variant="outline" size="sm" className="w-full sm:w-auto sm:h-8 sm:px-2">
+                        <ExternalLink className="h-4 w-4 sm:mr-0 mr-1" />
+                        <span className="sm:hidden">View</span>
                       </Button>
                     </a>
                     <Button
-                      variant="ghost"
-                      size="icon"
+                      variant="outline"
+                      size="sm"
+                      className="w-full sm:w-auto sm:h-8 sm:px-2"
                       onClick={() => openEditForm(book)}
                     >
-                      <Pencil className="h-4 w-4" />
+                      <Pencil className="h-4 w-4 sm:mr-0 mr-1" />
+                      <span className="sm:hidden">Edit</span>
                     </Button>
                     <Button
-                      variant="ghost"
-                      size="icon"
+                      variant="outline"
+                      size="sm"
+                      className="w-full sm:w-auto sm:h-8 sm:px-2 text-destructive hover:text-destructive"
                       onClick={() => setDeleteTarget(book)}
-                      className="text-destructive hover:text-destructive"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4 sm:mr-0 mr-1" />
+                      <span className="sm:hidden">Delete</span>
                     </Button>
                   </div>
                 </div>
