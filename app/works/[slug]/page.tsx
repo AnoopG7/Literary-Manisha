@@ -58,7 +58,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
         <Button asChild variant="ghost" size="sm" className="mb-8 -ml-2 gap-1 text-muted-foreground hover:text-foreground">
           <Link href="/works">
             <ArrowLeft className="h-4 w-4" />
-            Back to Works
+            Back to Content
           </Link>
         </Button>
 
@@ -157,7 +157,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
         {/* Related works */}
         {relatedWorks.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-xl font-semibold mb-6">More {work.category === 'poem' ? 'Poetry' : work.category === 'story' ? 'Stories' : 'Works'}</h2>
+            <h2 className="text-xl font-semibold mb-6">More {work.category === 'poem' ? 'Poetry' : work.category === 'story' ? 'Stories' : 'Content'}</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {relatedWorks.map((related) => (
                 <Link key={related._id} href={`/works/${related.slug}`}>

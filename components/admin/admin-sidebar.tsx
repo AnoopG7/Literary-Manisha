@@ -22,7 +22,7 @@ const sidebarLinks = [
     icon: LayoutDashboard,
   },
   {
-    label: 'Works',
+    label: 'Content',
     href: '/admin/works',
     icon: PenTool,
   },

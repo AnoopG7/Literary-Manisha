@@ -88,7 +88,7 @@ export default function WorksPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Page header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Works</h1>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Content</h1>
           <p className="mt-3 text-lg text-muted-foreground">
             Explore my collection of poetry, stories, and essays — in Hindi and English.
           </p>
@@ -101,7 +101,7 @@ export default function WorksPage() {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search works..."
+              placeholder="Search content..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 rounded-full bg-secondary/50 border-border/50 focus-visible:ring-primary/30"
@@ -169,7 +169,7 @@ export default function WorksPage() {
 
         {/* Results count */}
         <p className="mb-6 text-sm text-muted-foreground">
-          Showing {filteredWorks.length} of {publishedWorks.length} works
+          Showing {filteredWorks.length} of {publishedWorks.length} pieces of content
         </p>
 
         {/* Loading state */}
@@ -177,7 +177,7 @@ export default function WorksPage() {
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
               <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">Loading works...</p>
+              <p className="text-sm text-muted-foreground">Loading content...</p>
             </div>
           </div>
         ) : error ? (
@@ -233,7 +233,7 @@ export default function WorksPage() {
           </div>
         ) : (
           <div className="py-20 text-center">
-            <p className="text-lg text-muted-foreground">No works found matching your filters.</p>
+            <p className="text-lg text-muted-foreground">No content found matching your filters.</p>
             <button
               onClick={() => {
                 setSearchQuery('');

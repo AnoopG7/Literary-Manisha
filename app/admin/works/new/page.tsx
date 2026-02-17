@@ -67,12 +67,12 @@ export default function NewWorkPage() {
       });
 
       if (res.ok) {
-        toast.success(`Work ${status === 'published' ? 'published' : 'saved as draft'} successfully!`);
+        toast.success(`Content ${status === 'published' ? 'published' : 'saved as draft'} successfully!`);
         router.push('/admin/works');
         router.refresh();
       } else {
         const data = await res.json();
-        const errorMsg = data.error || 'Failed to create work';
+        const errorMsg = data.error || 'Failed to create content';
         setError(errorMsg);
         toast.error(errorMsg);
       }
@@ -98,7 +98,7 @@ export default function NewWorkPage() {
             </Button>
           </Link>
           <div className="min-w-0">
-            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">New Work</h1>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">New Content</h1>
             <p className="text-sm text-muted-foreground sm:text-base">
               Create a new poem, story, or essay.
             </p>

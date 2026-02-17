@@ -19,7 +19,7 @@ export default async function AdminDashboardPage() {
 
   const statCards = [
     {
-      label: 'Published Works',
+      label: 'Published Content',
       value: stats.works,
       icon: PenTool,
       href: '/admin/works',
@@ -54,7 +54,7 @@ export default async function AdminDashboardPage() {
         <Link href="/admin/works/new">
           <Button size="sm" className="w-full sm:w-auto">
             <Plus className="mr-2 h-4 w-4" />
-            New Work
+            New Content
           </Button>
         </Link>
       </div>
@@ -78,10 +78,10 @@ export default async function AdminDashboardPage() {
         ))}
       </div>
 
-      {/* Recent Works */}
+      {/* Recent Content */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Recent Works</CardTitle>
+          <CardTitle>Recent Content</CardTitle>
           <Link href="/admin/works">
             <Button variant="ghost" size="sm">
               View All
@@ -92,7 +92,7 @@ export default async function AdminDashboardPage() {
         <CardContent>
           {recentWorks.length === 0 ? (
             <p className="py-8 text-center text-muted-foreground">
-              No works yet. Create your first work!
+              No content yet. Create your first piece!
             </p>
           ) : (
             <div className="space-y-3">

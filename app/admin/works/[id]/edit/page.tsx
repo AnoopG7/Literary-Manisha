@@ -109,12 +109,12 @@ export default function EditWorkPage({
       });
 
       if (res.ok) {
-        toast.success('Work updated successfully!');
+        toast.success('Content updated successfully!');
         router.push('/admin/works');
         router.refresh();
       } else {
         const data = await res.json();
-        const errorMsg = data.error || 'Failed to update work';
+        const errorMsg = data.error || 'Failed to update content';
         setError(errorMsg);
         toast.error(errorMsg);
       }
@@ -141,7 +141,7 @@ export default function EditWorkPage({
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
           <Link href="/admin/works">
             <Button variant="ghost" size="icon">
@@ -149,21 +149,25 @@ export default function EditWorkPage({
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Edit Work</h1>
-            <p className="text-muted-foreground">Update your work.</p>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Edit Content</h1>
+            <p className="text-sm text-muted-foreground sm:text-base">Update your content.</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="grid grid-cols-3 gap-2 sm:flex sm:items-center sm:justify-end sm:gap-2">
           <Button
             variant="outline"
+            size="sm"
+            className="w-full sm:w-auto sm:size-default"
             onClick={() => setShowPreview(!showPreview)}
           >
-            <Eye className="mr-2 h-4 w-4" />
+            <Eye className="mr-1 h-4 w-4 sm:mr-2" />
             {showPreview ? 'Edit' : 'Preview'}
           </Button>
           {formData.status === 'published' ? (
             <Button
               variant="outline"
+              size="sm"
+              className="w-full sm:w-auto sm:size-default"
               onClick={() => handleSubmit('draft')}
               disabled={isSubmitting}
             >
@@ -172,6 +176,8 @@ export default function EditWorkPage({
           ) : (
             <Button
               variant="outline"
+              size="sm"
+              className="w-full sm:w-auto sm:size-default"
               onClick={() => handleSubmit('draft')}
               disabled={isSubmitting}
             >
@@ -179,17 +185,19 @@ export default function EditWorkPage({
             </Button>
           )}
           <Button
+            size="sm"
+            className="w-full sm:w-auto sm:size-default"
             onClick={() => handleSubmit('published')}
             disabled={isSubmitting || !formData.title || !formData.content}
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-1 h-4 w-4 animate-spin sm:mr-2" />
                 Saving...
               </>
             ) : (
               <>
-                <Save className="mr-2 h-4 w-4" />
+                <Save className="mr-1 h-4 w-4 sm:mr-2" />
                 {formData.status === 'published' ? 'Update' : 'Publish'}
               </>
             )}

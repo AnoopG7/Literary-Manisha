@@ -46,7 +46,7 @@ async function HeroSection() {
             <Button asChild size="lg" className="rounded-full px-8 gap-2">
               <Link href="/works">
                 <BookOpen className="h-4 w-4" />
-                Explore My Works
+                Explore My Content
               </Link>
             </Button>
             <Button
@@ -66,7 +66,7 @@ async function HeroSection() {
           <div className="mt-16 grid grid-cols-3 gap-8 sm:gap-16 animate-fade-in-up stagger-4">
             <Link href="/works" className="text-center group">
               <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.works}+</p>
-              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Works Published</p>
+              <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Content Published</p>
             </Link>
             <Link href="/books" className="text-center group">
               <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.books}</p>
@@ -93,7 +93,7 @@ async function FeaturedWorksSection() {
         <div className="mb-12 flex items-end justify-between">
           <div>
             <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
-              Featured Works
+              Featured Content
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Selected Writings
@@ -151,7 +151,7 @@ async function FeaturedWorksSection() {
         <div className="mt-8 text-center sm:hidden">
           <Button asChild variant="outline" className="gap-1">
             <Link href="/works">
-              View all works
+              View all content
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -331,7 +331,7 @@ function CTASection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-              <Link href="/works">Browse My Works</Link>
+              <Link href="/works">Browse My Content</Link>
             </Button>
           </div>
         </div>

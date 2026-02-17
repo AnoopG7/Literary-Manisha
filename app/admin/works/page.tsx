@@ -97,7 +97,7 @@ export default function AdminWorksPage() {
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
-          placeholder="Search works..."
+          placeholder="Search content..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="pl-10"
@@ -108,7 +108,7 @@ export default function AdminWorksPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">
-            All Works ({filteredWorks.length})
+            All Content ({filteredWorks.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -119,7 +119,7 @@ export default function AdminWorksPage() {
           ) : filteredWorks.length === 0 ? (
             <div className="py-12 text-center">
               <p className="text-muted-foreground">
-                {search ? 'No works match your search.' : 'No works yet. Create your first one!'}
+                {search ? 'No content matches your search.' : 'No content yet. Create your first one!'}
               </p>
             </div>
           ) : (
@@ -143,19 +143,21 @@ export default function AdminWorksPage() {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 flex-shrink-0">
-                    <Link href={`/admin/works/${work._id}/edit`}>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Pencil className="h-4 w-4" />
+                  <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-1 flex-shrink-0">
+                    <Link href={`/admin/works/${work._id}/edit`} className="w-full sm:w-auto">
+                      <Button variant="outline" size="sm" className="w-full sm:w-auto sm:h-8 sm:px-2">
+                        <Pencil className="h-4 w-4 sm:mr-0 mr-1" />
+                        <span className="sm:hidden">Edit</span>
                       </Button>
                     </Link>
                     <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 text-destructive hover:text-destructive"
+                      variant="outline"
+                      size="sm"
+                      className="w-full sm:w-auto sm:h-8 sm:px-2 text-destructive hover:text-destructive"
                       onClick={() => setDeleteTarget(work)}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4 sm:mr-0 mr-1" />
+                      <span className="sm:hidden">Delete</span>
                     </Button>
                   </div>
                 </div>

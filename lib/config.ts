@@ -23,7 +23,7 @@ export const siteConfig: SiteConfig = {
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Works', href: '/works' },
+  { label: 'Content', href: '/works' },
   { label: 'Books', href: '/books' },
   { label: 'Awards', href: '/awards' },
   { label: 'About', href: '/about' },
