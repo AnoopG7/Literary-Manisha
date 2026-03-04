@@ -100,7 +100,7 @@ export default async function AboutPage() {
           <div className="lg:col-span-3 space-y-12">
             {/* Name + Title */}
             <div>
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-2">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-2 text-heading-accent">
                 {siteConfig.author.name}
               </h1>
               <p className="text-xl text-primary font-light tracking-wide">
@@ -111,22 +111,7 @@ export default async function AboutPage() {
             {/* Bio */}
             <div className="prose-literary">
               <p>
-                {siteConfig.author.bio}
-              </p>
-              <p>
-                Words have always been my compass. From the quiet lanes of small-town India to the
-                wide world of publishing, I&apos;ve carried stories in both Hindi and English —
-                each language offering its own palette of emotions, rhythms, and silences.
-              </p>
-              <p>
-                My work explores the intimate spaces of human connection: the bonds between
-                generations, the weight of unsaid words, and the small moments that quietly
-                define who we are. I write because I believe that every story, no matter how small,
-                deserves to be told.
-              </p>
-              <p className="font-hindi">
-                मेरा मानना है कि शब्दों में वो ताकत है जो दिलों को जोड़ सकती है,
-                दूरियों को मिटा सकती है, और अनकहे भावों को आवाज़ दे सकती है।
+                Manisha Keshav is a mystic poet and spiritual guide, weaving words into sacred tapestries that awaken the heart and soul. Her poetry is a reflection of her own journey of self-discovery and healing, infused with the wisdom of the universe and the whispers of the divine. With a deep understanding of the human experience, Manisha&apos;s words offer solace, comfort, and guidance to those seeking to navigate the complexities of life and uncover their own inner light. Her poetry is a bridge between the mundane and the mystical, inviting readers to embark on a journey of spiritual growth and transformation.
               </p>
             </div>
 
@@ -134,7 +119,7 @@ export default async function AboutPage() {
 
             {/* Writing Journey */}
             <div>
-              <h2 className="text-2xl font-bold tracking-tight mb-6">The Writing Journey</h2>
+              <h2 className="text-2xl font-bold tracking-tight mb-6 text-heading-accent">The Writing Journey</h2>
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 w-1 rounded-full bg-gradient-to-b from-primary to-accent" />
@@ -178,7 +163,7 @@ export default async function AboutPage() {
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <Award className="h-6 w-6 text-primary" />
-                <h2 className="text-2xl font-bold tracking-tight">Awards & Recognition</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-heading-accent">Awards & Recognition</h2>
               </div>
               <div className="space-y-6">
                 {awards.map((award) => (
@@ -219,7 +204,7 @@ export default async function AboutPage() {
 
             {/* What I Write */}
             <div>
-              <h2 className="text-2xl font-bold tracking-tight mb-6">What I Write</h2>
+              <h2 className="text-2xl font-bold tracking-tight mb-6 text-heading-accent">What I Write</h2>
               <div className="grid gap-4 sm:grid-cols-3">
                 <Card className="border-border/50 bg-card/50">
                   <CardContent className="p-5 text-center">
@@ -259,7 +244,7 @@ export default async function AboutPage() {
 
             {/* For Literary Agents */}
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8">
-              <h3 className="text-lg font-semibold mb-2">For Literary Agents & Publishers</h3>
+              <h3 className="text-lg font-semibold mb-2 text-heading-accent">For Literary Agents & Publishers</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 I am actively seeking literary representation and publishing partnerships.
                 My portfolio includes published books, award-winning poetry, and a growing body

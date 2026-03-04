@@ -136,7 +136,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
               className="group flex flex-col rounded-xl border border-border/50 p-4 transition-colors hover:border-primary/20 hover:bg-card"
             >
               <span className="text-xs text-muted-foreground mb-1">← Previous</span>
-              <span className={`text-sm font-medium group-hover:text-primary transition-colors ${prevWork.language === 'hindi' ? 'font-hindi' : ''}`}>
+              <span className={`text-sm font-medium group-hover:text-heading-accent transition-colors ${prevWork.language === 'hindi' ? 'font-hindi' : ''}`}>
                 {prevWork.title}
               </span>
             </Link>
@@ -147,7 +147,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
               className="group flex flex-col items-end rounded-xl border border-border/50 p-4 transition-colors hover:border-primary/20 hover:bg-card text-right"
             >
               <span className="text-xs text-muted-foreground mb-1">Next →</span>
-              <span className={`text-sm font-medium group-hover:text-primary transition-colors ${nextWork.language === 'hindi' ? 'font-hindi' : ''}`}>
+              <span className={`text-sm font-medium group-hover:text-heading-accent transition-colors ${nextWork.language === 'hindi' ? 'font-hindi' : ''}`}>
                 {nextWork.title}
               </span>
             </Link>
@@ -157,7 +157,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
         {/* Related works */}
         {relatedWorks.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-xl font-semibold mb-6">More {work.category === 'poem' ? 'Poetry' : work.category === 'story' ? 'Stories' : 'Content'}</h2>
+            <h2 className="text-xl font-semibold mb-6 text-heading-accent">More {work.category === 'poem' ? 'Poetry' : work.category === 'story' ? 'Stories' : 'Content'}</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {relatedWorks.map((related) => (
                 <Link key={related._id} href={`/works/${related.slug}`}>
@@ -165,7 +165,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
                     <Badge variant="outline" className="mb-2 text-xs">
                       {related.language === 'hindi' ? 'हिंदी' : 'English'}
                     </Badge>
-                    <h3 className={`text-base font-semibold group-hover:text-primary transition-colors ${related.language === 'hindi' ? 'font-hindi' : ''}`}>
+                    <h3 className={`text-base font-semibold group-hover:text-heading-accent transition-colors ${related.language === 'hindi' ? 'font-hindi' : ''}`}>
                       {related.title}
                     </h3>
                     <p className={`mt-2 text-sm text-muted-foreground line-clamp-2 ${related.language === 'hindi' ? 'font-hindi' : ''}`}>

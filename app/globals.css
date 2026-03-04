@@ -25,6 +25,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-heading-accent: var(--heading-accent);
 
   --font-sans: var(--font-sans-family);
   --font-hindi: var(--font-hindi-family);
@@ -59,6 +60,7 @@
   --border: #E0D4C4;
   --input: #E0D4C4;
   --ring: #8B4513;
+  --heading-accent: #6B21A8;
 }
 
 .dark {
@@ -81,6 +83,7 @@
   --border: #3D362E;
   --input: #3D362E;
   --ring: #D4A574;
+  --heading-accent: #C084FC;
 }
 
 @layer base {
@@ -236,10 +239,19 @@
 /* ===== Utility Classes ===== */
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--heading-accent) 0%, #9333EA 50%, #A855F7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+}
+
+.dark .text-gradient {
+  background: linear-gradient(135deg, #A855F7 0%, #C084FC 50%, #E9D5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .glass-card {

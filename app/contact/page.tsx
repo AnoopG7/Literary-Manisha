@@ -45,7 +45,7 @@ export default function ContactPage() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
           <Feather className="h-8 w-8 text-primary" />
         </div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">
+        <h1 className="text-4xl font-bold tracking-tight text-foreground text-heading-accent">
           Get in Touch
         </h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -58,7 +58,7 @@ export default function ContactPage() {
         <div className="space-y-6">
           <Card className="h-fit">
             <CardContent className="pt-6">
-              <h2 className="mb-4 text-xl font-semibold">Say Hello</h2>
+              <h2 className="mb-4 text-xl font-semibold text-heading-accent">Say Hello</h2>
               <p className="mb-6 text-muted-foreground">
                 For collaborations, readings, publishing inquiries, or sharing your favorite poem — reach out anytime.
               </p>
@@ -82,7 +82,7 @@ export default function ContactPage() {
 
           <Card className="h-fit">
             <CardContent className="pt-6">
-              <h2 className="mb-4 text-xl font-semibold">Connect</h2>
+              <h2 className="mb-4 text-xl font-semibold text-heading-accent">Connect</h2>
               <div className="space-y-3">
                 {socialLinks.map((link) => (
                   <a
@@ -105,7 +105,7 @@ export default function ContactPage() {
         <div className="space-y-6">
           <Card className="h-fit">
             <CardContent className="pt-6">
-              <h2 className="mb-4 text-xl font-semibold">
+              <h2 className="mb-4 text-xl font-semibold text-heading-accent">
                 For Literary Agents & Publishers
               </h2>
               <p className="mb-4 text-muted-foreground">
@@ -127,7 +127,7 @@ export default function ContactPage() {
 
           <Card className="h-fit">
             <CardContent className="pt-6">
-              <h2 className="mb-4 text-xl font-semibold">For Readers</h2>
+              <h2 className="mb-4 text-xl font-semibold text-heading-accent">For Readers</h2>
               <p className="mb-4 text-muted-foreground">
                 Your words mean the world to me. If a poem moved you, a story stayed with you, or you simply want to share a thought — I read every message.
               </p>

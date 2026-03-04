@@ -18,7 +18,7 @@ export default async function BooksPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Page header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Books</h1>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-heading-accent">Books</h1>
           <p className="mt-3 text-lg text-muted-foreground max-w-2xl">
             My published content — collections of poetry, stories, and essays.
             Each book is a journey into the heart of human experience.

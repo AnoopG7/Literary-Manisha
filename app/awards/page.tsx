@@ -24,7 +24,7 @@ export default async function AwardsPage() {
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
               <Trophy className="h-5 w-5 text-amber-600 dark:text-amber-400" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-heading-accent">
               Awards & Recognition
             </h1>
           </div>
@@ -81,11 +81,11 @@ export default async function AwardsPage() {
                 </div>
 
                 <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                  <h2 className="text-xl font-semibold mb-2 text-heading-accent group-hover:text-heading-accent/80 transition-colors">
                     {award.title}
                   </h2>
 
-                  <p className="text-sm font-medium text-primary/80 mb-3">
+                  <p className="text-sm font-medium text-heading-accent/80 mb-3">
                     {award.issuingBody}
                   </p>
 
@@ -100,7 +100,7 @@ export default async function AwardsPage() {
 
         {/* Bottom CTA */}
         <div className="mt-16 rounded-2xl border border-border/50 bg-card/50 p-8 text-center">
-          <h3 className="text-lg font-semibold mb-2">Literary Recognition</h3>
+          <h3 className="text-lg font-semibold mb-2 text-heading-accent">Literary Recognition</h3>
           <p className="text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed">
             These awards reflect the support and appreciation of readers, literary communities,
             and cultural organizations. Grateful for every milestone on this writing journey.

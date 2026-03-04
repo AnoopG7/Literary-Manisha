@@ -88,7 +88,7 @@ export default function WorksPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Page header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Content</h1>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-heading-accent">Content</h1>
           <p className="mt-3 text-lg text-muted-foreground">
             Explore my collection of poetry, stories, and essays — in Hindi and English.
           </p>
@@ -201,7 +201,7 @@ export default function WorksPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className={`mb-3 text-lg font-semibold transition-colors group-hover:text-primary leading-tight ${work.language === 'hindi' ? 'font-hindi' : ''}`}>
+                    <h3 className={`mb-3 text-lg font-semibold transition-colors group-hover:text-heading-accent leading-tight ${work.language === 'hindi' ? 'font-hindi' : ''}`}>
                       {work.title}
                     </h3>
 

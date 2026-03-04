@@ -65,15 +65,15 @@ async function HeroSection() {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-3 gap-8 sm:gap-16 animate-fade-in-up stagger-4">
             <Link href="/works" className="text-center group">
-              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.works}+</p>
+              <p className="text-3xl font-bold text-heading-accent sm:text-4xl group-hover:scale-110 transition-transform">{stats.works}+</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Content Published</p>
             </Link>
             <Link href="/books" className="text-center group">
-              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.books}</p>
+              <p className="text-3xl font-bold text-heading-accent sm:text-4xl group-hover:scale-110 transition-transform">{stats.books}</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Books</p>
             </Link>
             <Link href="/awards" className="text-center group">
-              <p className="text-3xl font-bold text-primary sm:text-4xl group-hover:scale-110 transition-transform">{stats.awards}</p>
+              <p className="text-3xl font-bold text-heading-accent sm:text-4xl group-hover:scale-110 transition-transform">{stats.awards}</p>
               <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">Awards</p>
             </Link>
           </div>
@@ -92,10 +92,10 @@ async function FeaturedWorksSection() {
         {/* Section header */}
         <div className="mb-12 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
+            <p className="mb-2 text-sm font-medium uppercase tracking-wider text-heading-accent">
               Featured Content
             </p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-heading-accent">
               Selected Writings
             </h2>
           </div>
@@ -124,7 +124,7 @@ async function FeaturedWorksSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className={`mb-3 text-xl font-semibold transition-colors group-hover:text-primary ${work.language === 'hindi' ? 'font-hindi' : ''}`}>
+                  <h3 className={`mb-3 text-xl font-semibold transition-colors group-hover:text-heading-accent ${work.language === 'hindi' ? 'font-hindi' : ''}`}>
                     {work.title}
                   </h3>
 
@@ -169,10 +169,10 @@ async function BooksShowcaseSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section header */}
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
+          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-heading-accent">
             Published Books
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-heading-accent">
             Available on Amazon
           </h2>
           <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
@@ -211,7 +211,7 @@ async function BooksShowcaseSection() {
               </div>
 
               <CardContent className="p-5">
-                <h3 className={`text-lg font-semibold mb-2 ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
+                <h3 className={`text-lg font-semibold mb-2 text-heading-accent ${book.language === 'hindi' ? 'font-hindi' : ''}`}>
                   {book.title}
                 </h3>
                 <Badge variant="secondary" className="mb-3 text-xs">
@@ -253,10 +253,10 @@ async function AwardsSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section header */}
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
+          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-heading-accent">
             Recognition
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-heading-accent">
             Awards & Honors
           </h2>
         </div>
@@ -290,10 +290,10 @@ async function AwardsSection() {
               {/* Content */}
               <div className="flex-1 pb-2">
                 <div className="flex items-center gap-3 mb-1 flex-wrap">
-                  <h3 className="text-lg font-semibold">{award.title}</h3>
+                  <h3 className="text-lg font-semibold text-heading-accent">{award.title}</h3>
                   <Badge variant="outline" className="text-xs">{award.year}</Badge>
                 </div>
-                <p className="text-sm font-medium text-primary/80 mb-2">
+                <p className="text-sm font-medium text-heading-accent/80 mb-2">
                   {award.issuingBody}
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -317,7 +317,7 @@ function CTASection() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
           <Feather className="h-8 w-8 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl font-bold tracking-tight mb-4 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight mb-4 sm:text-4xl text-heading-accent">
             Let&apos;s Connect
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8 leading-relaxed">
